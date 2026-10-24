@@ -1,0 +1,199 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with display name, bio, and stats",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Unique auth UID" },
+        "username": { "type": "string", "description": "Unique username handle" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "bio": { "type": "string", "description": "Profile biography" },
+        "avatarUrl": { "type": "string", "description": "Profile picture URL" },
+        "followersCount": { "type": "integer", "description": "Follower counter" },
+        "followingCount": { "type": "integer", "description": "Following counter" },
+        "postsCount": { "type": "integer", "description": "Published posts counter" },
+        "isPrivate": { "type": "boolean", "description": "Account privacy setting" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Account creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Profile last update timestamp" }
+      },
+      "required": ["userId", "username", "displayName", "followersCount", "followingCount", "postsCount", "isPrivate", "createdAt"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "Social short-video or photo post",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string", "description": "Post creator user ID" },
+        "authorUsername": { "type": "string", "description": "Creator username" },
+        "authorAvatarUrl": { "type": "string", "description": "Creator avatar URL" },
+        "mediaUrl": { "type": "string", "description": "Video or image media URL" },
+        "thumbnailUrl": { "type": "string", "description": "Video thumbnail URL" },
+        "caption": { "type": "string", "description": "Post caption text" },
+        "audioTitle": { "type": "string", "description": "Soundtrack or original audio title" },
+        "likesCount": { "type": "integer", "description": "Number of likes" },
+        "commentsCount": { "type": "integer", "description": "Number of comments" },
+        "savesCount": { "type": "integer", "description": "Number of saves" },
+        "tags": { "type": "array", "description": "Hashtag list" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Post creation timestamp" }
+      },
+      "required": ["authorId", "authorUsername", "mediaUrl", "caption", "likesCount", "commentsCount", "savesCount", "createdAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Comment on a post",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "description": "Parent post ID" },
+        "authorId": { "type": "string", "description": "Commenter UID" },
+        "authorUsername": { "type": "string", "description": "Commenter username" },
+        "authorAvatarUrl": { "type": "string", "description": "Commenter avatar URL" },
+        "text": { "type": "string", "description": "Comment body" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp" }
+      },
+      "required": ["postId", "authorId", "authorUsername", "text", "createdAt"]
+    },
+    "Like": {
+      "title": "Like",
+      "description": "Like record on a post",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string", "description": "Target post ID" },
+        "userId": { "type": "string", "description": "Liking user ID" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp" }
+      },
+      "required": ["postId", "userId", "createdAt"]
+    },
+    "SavedPost": {
+      "title": "SavedPost",
+      "description": "User saved bookmark of a post",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "User who saved" },
+        "postId": { "type": "string", "description": "Saved post ID" },
+        "savedAt": { "type": "string", "format": "date-time", "description": "Timestamp" }
+      },
+      "required": ["userId", "postId", "savedAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Chat thread or group between users",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["direct", "group"], "description": "Direct or group chat" },
+        "name": { "type": "string", "description": "Group name or blank for direct" },
+        "creatorId": { "type": "string", "description": "Creator user ID" },
+        "memberUids": { "type": "array", "description": "Participant user IDs" },
+        "lastMessageText": { "type": "string", "description": "Preview of last message" },
+        "lastMessageSenderId": { "type": "string", "description": "Sender of last message" },
+        "lastMessageTimestamp": { "type": "string", "format": "date-time", "description": "Time of last message" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last activity timestamp" }
+      },
+      "required": ["type", "creatorId", "memberUids", "createdAt", "updatedAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Chat message inside a conversation",
+      "type": "object",
+      "properties": {
+        "conversationId": { "type": "string", "description": "Conversation ID" },
+        "senderId": { "type": "string", "description": "Message sender user ID" },
+        "senderName": { "type": "string", "description": "Sender display name" },
+        "text": { "type": "string", "description": "Message text content" },
+        "mediaUrl": { "type": "string", "description": "Attachment URL" },
+        "messageType": { "type": "string", "enum": ["text", "image", "video", "audio", "file"], "description": "Type of message" },
+        "memberUids": { "type": "array", "description": "Denormalized participant UIDs" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp" }
+      },
+      "required": ["conversationId", "senderId", "senderName", "text", "messageType", "memberUids", "createdAt"]
+    },
+    "Story": {
+      "title": "Story",
+      "description": "24h temporary media story",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string", "description": "Story author user ID" },
+        "authorUsername": { "type": "string", "description": "Author username" },
+        "authorAvatarUrl": { "type": "string", "description": "Author avatar URL" },
+        "mediaUrl": { "type": "string", "description": "Story media URL" },
+        "caption": { "type": "string", "description": "Story text overlay" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp" }
+      },
+      "required": ["authorId", "authorUsername", "mediaUrl", "createdAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "In-app user notification",
+      "type": "object",
+      "properties": {
+        "recipientId": { "type": "string", "description": "Target recipient user ID" },
+        "senderId": { "type": "string", "description": "Originating user ID" },
+        "senderUsername": { "type": "string", "description": "Sender username" },
+        "type": { "type": "string", "enum": ["like", "comment", "follow", "message"], "description": "Notification category" },
+        "targetId": { "type": "string", "description": "Post or conversation ID" },
+        "content": { "type": "string", "description": "Notification preview message" },
+        "read": { "type": "boolean", "description": "Read status indicator" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp" }
+      },
+      "required": ["recipientId", "senderId", "senderUsername", "type", "content", "read", "createdAt"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Content moderation report",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string", "description": "Reporting user ID" },
+        "targetType": { "type": "string", "enum": ["post", "comment", "user", "message"], "description": "Reported entity type" },
+        "targetId": { "type": "string", "description": "ID of target entity" },
+        "reason": { "type": "string", "description": "Reason for report" },
+        "description": { "type": "string", "description": "Optional details" },
+        "status": { "type": "string", "enum": ["pending", "reviewed", "dismissed"], "description": "Review status" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp" }
+      },
+      "required": ["reporterId", "targetType", "targetId", "reason", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Public user profiles"
+    },
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Public video and photo posts"
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Post comments"
+    },
+    "/posts/{postId}/likes/{userId}": {
+      "schema": "Like",
+      "description": "Post likes"
+    },
+    "/users/{userId}/savedPosts/{postId}": {
+      "schema": "SavedPost",
+      "description": "User saved bookmarks"
+    },
+    "/conversations/{conversationId}": {
+      "schema": "Conversation",
+      "description": "Messaging conversations"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages inside conversations"
+    },
+    "/stories/{storyId}": {
+      "schema": "Story",
+      "description": "Short-lived stories"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User in-app notifications"
+    },
+    "/reports/{reportId}": {
+      "schema": "Report",
+      "description": "User moderation reports"
+    }
+  }
+}

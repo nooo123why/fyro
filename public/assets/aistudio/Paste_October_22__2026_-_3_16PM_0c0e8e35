@@ -1,0 +1,770 @@
+# MASTER PROMPT: BUILD VYRO — A COMPLETE SOCIAL MEDIA + MESSAGING APP
+
+You are a senior full-stack developer, UI/UX designer, mobile application engineer, database architect, security engineer, and product designer.
+
+Your mission is to build **VYRO**, a polished, modern, production-oriented social media application that combines the best general features of TikTok and WhatsApp into one original platform.
+
+Do not create a basic prototype, static mockup, or collection of nonfunctional screens. Build a real application with functional navigation, authentication, database integration, media uploads, messaging, social features, and persistent settings.
+
+The design must be original. Do not copy TikTok's or WhatsApp's exact branding, logos, or proprietary interface designs.
+
+## 1. CORE REQUIREMENTS
+
+Build the application with:
+
+- A mobile-first responsive design.
+- Support for Android, iOS-compatible layouts, and desktop web.
+- A beautiful dark theme and light theme.
+- Smooth transitions, animations, gestures, and loading states.
+- Real user accounts and secure authentication.
+- Persistent user profiles, posts, conversations, messages, and settings.
+- Real-time chat and social interactions.
+- A vertical, swipeable short-video feed.
+- Photo and video uploads.
+- Notifications and privacy controls.
+- A scalable backend architecture.
+- Clear error handling and empty states.
+- Accessible controls, readable text, and large touch targets.
+
+Every visible button must perform its intended action. Do not use fake data to pretend that a real feature works. If a feature needs configuration, credentials, permissions, or a backend service, implement the integration and explain the remaining setup.
+
+## 2. TECHNOLOGY STACK
+
+Prefer the following stack when using Google AI Studio:
+
+Frontend:
+- React with TypeScript.
+- A modern, reusable component architecture.
+- Responsive CSS or Tailwind CSS.
+- Lucide icons.
+- A lightweight animation library where appropriate.
+- Progressive Web App support if building for the web.
+
+Backend:
+- Firebase Authentication for account registration and sign-in.
+- Cloud Firestore for profiles, messages, conversations, posts, comments, likes, and social relationships.
+- Firebase Storage for profile pictures, videos, images, and attachments.
+- Firebase Cloud Messaging for supported push notifications.
+- Cloud Functions for trusted server-side operations, moderation, notifications, and other privileged tasks.
+- App Check and security rules to reduce unauthorized access.
+
+Additional services:
+- Use a suitable WebRTC-based calling implementation for voice and video calls.
+- Use a proper TURN/STUN configuration where required for reliable calling.
+- Use a media-processing service or backend pipeline if video transcoding and thumbnail generation are needed.
+- Use a secure search implementation for discovering users, creators, and content.
+
+Do not expose private API keys, service-account credentials, admin credentials, or server secrets in frontend code.
+
+If a different framework is required by the environment, explain the reason and preserve the same functionality.
+
+## 3. APP DESIGN AND VISUAL IDENTITY
+
+Create a premium, original visual identity for VYRO.
+
+Design direction:
+- Modern, sleek, clean, and slightly futuristic.
+- Deep charcoal backgrounds with subtle purple and electric-blue accents.
+- White text with carefully balanced secondary text.
+- Rounded cards and buttons.
+- Subtle gradients rather than excessive neon.
+- Smooth, short animations.
+- Clear icons and consistent spacing.
+- High-quality profile avatars and video thumbnails.
+- Minimal clutter and easy navigation.
+
+Include both dark and light themes.
+
+Create:
+- An original VYRO app icon.
+- A launch screen.
+- An onboarding experience.
+- A consistent typography system.
+- Reusable buttons, cards, input fields, modals, menus, and navigation components.
+
+Do not let the interface resemble a generic admin dashboard.
+
+## 4. ACCOUNT CREATION AND AUTHENTICATION
+
+Create a complete authentication flow.
+
+Registration:
+- Username.
+- Display name.
+- Email address.
+- Password.
+- Optional phone-number verification.
+- Date-of-birth entry and age-appropriate eligibility checks.
+- Acceptance of terms and privacy policy.
+
+Sign-in:
+- Email and password.
+- Supported OAuth providers when configured.
+- Password reset.
+- Sign-out.
+- Session persistence.
+- Account recovery.
+
+After registration:
+1. Create the user's profile.
+2. Let the user select a profile photo or avatar.
+3. Let the user write a short bio.
+4. Let the user choose a username.
+5. Allow optional interests for content recommendations.
+6. Offer contact discovery only with explicit permission.
+7. Take the user to the main application.
+
+Include useful validation messages and loading indicators.
+
+Never store plaintext passwords. Use the authentication provider's secure password handling.
+
+## 5. MAIN NAVIGATION
+
+Create a bottom navigation bar on mobile with five primary sections:
+
+1. Home
+2. Discover
+3. Create
+4. Inbox
+5. Profile
+
+The design must make switching between sections quick and intuitive.
+
+On desktop, use a suitable sidebar or adaptive navigation layout.
+
+Keep the selected navigation state visible. Preserve relevant scroll positions when switching between sections.
+
+## 6. HOME AND SHORT-VIDEO FEED
+
+This is one of the main features of VYRO.
+
+Build a full-screen, vertically swipeable short-video feed.
+
+Video behavior:
+- One video should be the primary active item at a time.
+- Automatically play the active video when appropriate.
+- Pause videos when they leave the active view.
+- Provide mute and unmute controls.
+- Provide play and pause controls.
+- Show a progress indicator.
+- Support captions and subtitles where available.
+- Use video thumbnails and loading placeholders.
+- Preload the next video without downloading excessive media.
+- Adapt video quality to network conditions where supported.
+- Support vertical 9:16 videos.
+- Handle unavailable, deleted, or failed media gracefully.
+
+Display the following information:
+- Creator profile photo.
+- Creator username.
+- Caption and hashtags.
+- Music or audio attribution when applicable.
+- Like button and count.
+- Comment button and count.
+- Share button.
+- Follow button.
+- Save-to-favorites button.
+- More-options menu.
+
+Interactions:
+- Like and unlike videos.
+- Open comments.
+- Add, edit, and delete permitted comments.
+- Reply to comments.
+- Follow and unfollow creators.
+- Save and unsave videos.
+- Share posts with other VYRO users.
+- Copy a public post link when supported.
+- Report inappropriate content.
+- Block or mute creators.
+- Open the creator's profile.
+
+Prevent duplicate likes and use optimistic updates carefully. Reconcile failed updates with the server.
+
+The feed should use real uploaded content. Create a safe, clearly labeled onboarding state when no posts are available.
+
+## 7. DISCOVER AND SEARCH
+
+Create a Discover page with:
+
+- Search users by username or display name.
+- Search videos by caption and hashtags.
+- Trending hashtags.
+- Popular creators.
+- Recommended accounts.
+- Categories and interests.
+- A responsive grid of video thumbnails.
+- Recent searches.
+- Search history controls.
+
+Use server-side pagination and appropriate database indexes.
+
+Do not expose private accounts, private posts, or blocked users through search.
+
+Recommendations should consider user interests, follows, likes, viewing behavior, and content freshness where appropriate.
+
+Do not pretend to have a sophisticated AI recommendation system if only a simple ranking algorithm has been implemented.
+
+## 8. VIDEO AND PHOTO CREATION
+
+Create a dedicated Create screen.
+
+Users should be able to:
+- Record video when supported.
+- Select existing videos from their device.
+- Upload photos.
+- Preview media before publishing.
+- Trim video clips where supported.
+- Choose a cover image.
+- Add a caption.
+- Add hashtags.
+- Choose an audience.
+- Add accessibility captions.
+- Enable or disable comments.
+- Publish or cancel.
+
+Provide clear upload progress, retry functionality, file-size limits, format validation, and upload cancellation.
+
+Store media in secure cloud storage and save metadata in the database.
+
+Generate thumbnails where supported.
+
+Use resumable uploads for large files when available.
+
+Publishing must not create duplicate posts when the user retries after a network failure.
+
+## 9. WHATSAPP-STYLE MESSAGING
+
+Build a fully functional, real-time messaging system.
+
+Inbox:
+- Conversation list.
+- Profile photos.
+- Contact or display names.
+- Latest message preview.
+- Timestamp.
+- Unread message count.
+- Online indicator when privacy settings allow.
+- Typing indicator.
+- Search conversations.
+- Pin and archive conversations.
+- Mute notifications.
+- Delete or leave conversations where appropriate.
+
+One-to-one messaging:
+- Send and receive text messages in real time.
+- Send photos and videos.
+- Share voice notes.
+- Share supported files.
+- Reply to a specific message.
+- React to messages with emojis.
+- Copy messages.
+- Edit sent messages within a defined time limit.
+- Delete messages for yourself.
+- Support an explicitly defined unsend option where appropriate.
+- Show sending, sent, delivered, and read states where implemented.
+- Show timestamps.
+- Display date separators.
+- Support message pagination.
+- Retry failed messages.
+- Keep the conversation usable when the connection is temporarily lost.
+
+Message composer:
+- Text input.
+- Emoji picker.
+- Attachment button.
+- Image and video selection.
+- Voice-note recording with microphone permission.
+- Send button.
+- Optional audio recording cancellation.
+
+Group chats:
+- Create groups.
+- Set group name and picture.
+- Add and remove participants according to permissions.
+- Display group members.
+- Support group messages and media.
+- Include group administrator roles.
+- Allow users to leave groups.
+- Allow administrators to manage membership.
+- Support mentions and reply-to-message interactions.
+
+Use Firestore listeners or another suitable real-time mechanism. Unsubscribe from listeners when screens are no longer active.
+
+Do not load an entire conversation history at once.
+
+## 10. VOICE AND VIDEO CALLING
+
+Implement real voice and video calling using WebRTC or a suitable managed calling service.
+
+Features:
+- Start a voice call from a conversation.
+- Start a video call.
+- Incoming-call interface.
+- Accept and reject incoming calls.
+- End-call button.
+- Microphone mute and unmute.
+- Camera on and off.
+- Switch between front and rear cameras when supported.
+- Call duration.
+- Connection and reconnection states.
+- Permission-denied handling.
+- Missed-call notifications.
+- Call history.
+
+Use authenticated signaling and validate that participants are authorized to communicate.
+
+Use TURN servers when required for connectivity across restrictive networks.
+
+Do not display a fake call screen as if a real connection exists. If calling cannot run until credentials or infrastructure are configured, clearly identify the dependency.
+
+## 11. STORIES AND TEMPORARY POSTS
+
+Add an optional Stories feature.
+
+Users can:
+- Upload a photo or short video.
+- Add text or simple stickers.
+- View stories from accounts they follow.
+- Move between stories.
+- See their own story views where appropriate.
+- Set story privacy.
+- Delete their own stories.
+
+Stories should expire automatically after a configurable period, such as 24 hours.
+
+Enforce expiration on the backend as well as in the interface. Do not rely exclusively on hiding expired stories in the frontend.
+
+## 12. USER PROFILES
+
+Every profile should include:
+- Profile picture.
+- Display name.
+- Username.
+- Bio.
+- Follower count.
+- Following count.
+- Published video and photo count.
+- Follow or unfollow button.
+- Message button subject to privacy settings.
+- Public posts grid.
+- Liked or saved content only when the account owner chooses to expose it.
+- Account privacy indicator.
+
+Profile editing:
+- Change display name.
+- Change username with availability checks.
+- Change bio.
+- Upload a new avatar.
+- Change profile banner if supported.
+- Update privacy settings.
+
+Allow public and private accounts.
+
+Private accounts should have follow requests, approval, and rejection functionality.
+
+Apply privacy rules consistently to profile details, posts, follower lists, and search results.
+
+## 13. FRIENDS, FOLLOWERS, AND CONTACTS
+
+Implement:
+- Follow and unfollow.
+- Follow requests.
+- Accept and decline requests.
+- Followers and following lists.
+- Mutual-follow indicators.
+- Suggested accounts.
+- Blocked-account management.
+
+Do not upload the user's address book automatically.
+
+If contact matching is offered, request permission, explain the purpose, minimize collected information, and use a privacy-preserving implementation.
+
+Do not reveal phone numbers or email addresses to other users unless explicitly authorized.
+
+## 14. NOTIFICATIONS
+
+Create an in-app notification center.
+
+Notify users about:
+- New followers.
+- Follow requests.
+- Likes.
+- Comments and replies.
+- Mentions.
+- New messages.
+- Group invitations.
+- Incoming calls.
+- Relevant account and security events.
+
+Include:
+- Read and unread states.
+- Mark-all-as-read.
+- Notification preferences.
+- Push notifications where configured and supported.
+- Deep links to the relevant conversation or post.
+
+Avoid creating duplicate notifications when backend operations retry.
+
+Do not send push notifications containing private message content by default. Provide appropriate privacy settings.
+
+## 15. SETTINGS AND CUSTOMIZATION
+
+Build a complete Settings page.
+
+Include:
+- Dark, light, and system theme.
+- Change password through the authentication provider.
+- Edit profile.
+- Privacy and security.
+- Notification preferences.
+- Blocked accounts.
+- Manage sessions where supported.
+- Data usage preferences.
+- Video autoplay settings.
+- Accessibility settings.
+- Help and support.
+- Community guidelines.
+- Terms and privacy policy.
+- Export personal data where supported.
+- Delete account.
+
+Account deletion must require confirmation and perform the actual backend cleanup or scheduled deletion process, including relevant media and personal data according to the application's retention policy.
+
+Do not leave private files publicly accessible after account deletion.
+
+## 16. DATABASE DESIGN
+
+Design a clear, scalable Firestore schema. Suggested collections include:
+
+users/{userId}
+
+posts/{postId}
+
+posts/{postId}/comments/{commentId}
+
+posts/{postId}/likes/{userId}
+
+users/{userId}/following/{targetUserId}
+
+users/{userId}/followers/{followerUserId}
+
+followRequests/{requestId}
+
+conversations/{conversationId}
+
+conversations/{conversationId}/messages/{messageId}
+
+conversations/{conversationId}/members/{userId}
+
+stories/{storyId}
+
+notifications/{notificationId}
+
+reports/{reportId}
+
+blocks/{blockId}
+
+savedPosts/{savedPostId}
+
+Define each document's fields, ownership, timestamps, references, and access rules before implementation.
+
+For conversations, store participant IDs, conversation type, creation time, last activity time, and only the necessary last-message preview.
+
+For messages, store:
+- Sender ID.
+- Message type.
+- Text or protected media reference.
+- Server timestamp.
+- Edit timestamp where applicable.
+- Reply reference where applicable.
+- Delivery and read metadata where appropriate.
+
+For posts, store:
+- Author ID.
+- Caption.
+- Hashtags.
+- Media references.
+- Thumbnail reference.
+- Creation timestamp.
+- Visibility.
+- Comment settings.
+- Moderation status.
+
+Use server-generated timestamps for trusted operations.
+
+Avoid storing the same information in many places unless there is a clear reason and a reliable synchronization strategy.
+
+Create required indexes and explain how to deploy them.
+
+## 17. SECURITY AND PRIVACY
+
+Security is mandatory.
+
+Implement:
+- Authentication checks.
+- Strict Firestore Security Rules.
+- Strict Firebase Storage Security Rules.
+- Server-side validation for sensitive actions.
+- User ownership validation.
+- Authorization checks for conversation participants.
+- Validation for group administrators.
+- File-type and file-size restrictions.
+- Rate limits for sensitive actions.
+- Protection against spam and repeated requests.
+- App Check where supported.
+- Safe rendering of user-generated text.
+- Secure media access for private content.
+- Account deletion and reporting workflows.
+
+Only conversation participants may access private conversation data.
+
+Users may only edit or delete content they own, except for explicitly authorized moderation actions.
+
+Users must not be able to change their own administrative privileges, forge message delivery states, impersonate another sender, or bypass privacy settings by manipulating client requests.
+
+Do not treat hiding a button as security.
+
+Never store plaintext passwords or hardcode service-account credentials.
+
+For end-to-end encrypted messaging, use a properly reviewed protocol and established cryptographic libraries. Do not invent a custom encryption algorithm or claim that chats are end-to-end encrypted unless that protection has actually been implemented and verified.
+
+## 18. CONTENT MODERATION AND SAFETY
+
+Create a reporting and moderation system.
+
+Users should be able to report:
+- Posts.
+- Comments.
+- Accounts.
+- Messages.
+- Harassment.
+- Impersonation.
+- Spam.
+- Inappropriate media.
+
+Include:
+- Block and mute controls.
+- Report reason selection.
+- Optional report description.
+- Duplicate-report handling.
+- Moderation status.
+- Administrator review tools.
+- Content removal and account restriction workflows.
+- Audit logs for privileged moderation actions.
+
+Design age-appropriate defaults, privacy controls, and protections against unsolicited contact.
+
+Do not expose a user's private reports to other users.
+
+Do not claim automated moderation is active unless a real moderation service or backend workflow has been configured.
+
+## 19. PERFORMANCE AND RELIABILITY
+
+Optimize the app for ordinary mobile devices and unreliable connections.
+
+Implement:
+- Lazy loading.
+- Pagination.
+- Image resizing and thumbnails.
+- Video preloading limits.
+- Appropriate caching.
+- Optimistic UI updates with rollback.
+- Upload retry handling.
+- Loading skeletons.
+- Empty states.
+- Offline and reconnection indicators.
+- Graceful error handling.
+- Database indexes.
+- Listener cleanup.
+- Efficient queries.
+- Responsive layouts.
+- Reduced-motion accessibility support.
+
+Do not download every video in the feed in advance.
+
+Do not create a database listener for every item in a large list.
+
+Do not fetch large media files when a thumbnail is sufficient.
+
+## 20. ADMINISTRATION AND ANALYTICS
+
+Create a protected administrative area for authorized moderators.
+
+Include:
+- Report review.
+- Content moderation.
+- User restrictions.
+- Account suspension and reinstatement.
+- Basic platform statistics.
+- Moderation history.
+- Safe audit logging.
+
+Administrator access must be controlled by trusted server-side roles or custom claims. Never grant admin access based on a username, email string alone, or a client-side setting.
+
+Collect only necessary analytics and respect user privacy and applicable consent requirements.
+
+## 21. REQUIRED SCREENS
+
+Build and connect all of the following:
+
+1. Splash screen.
+2. Onboarding.
+3. Sign-up.
+4. Sign-in.
+5. Password recovery.
+6. Home video feed.
+7. Discover and search.
+8. Video viewer.
+9. Comments.
+10. Create-post screen.
+11. Media preview and upload progress.
+12. Inbox.
+13. Individual conversation.
+14. Group conversation.
+15. Group creation and management.
+16. Voice-call screen.
+17. Video-call screen.
+18. Call history.
+19. Stories viewer.
+20. Story creation.
+21. User profile.
+22. Edit profile.
+23. Followers and following.
+24. Follow requests.
+25. Notifications.
+26. Saved posts.
+27. Settings.
+28. Privacy and security.
+29. Blocked accounts.
+30. Report content.
+31. Help and support.
+32. Admin moderation dashboard.
+33. Account deletion confirmation.
+
+Every screen must be connected to real application state and the appropriate backend services.
+
+## 22. DEVELOPMENT WORKFLOW
+
+Follow this sequence.
+
+PHASE 1 — PROJECT FOUNDATION
+- Inspect the existing project.
+- Choose the correct framework and entry points.
+- Establish the design system.
+- Set up routing.
+- Create reusable components.
+- Create a clean folder structure.
+- Ensure the app builds and launches.
+
+PHASE 2 — AUTHENTICATION
+- Configure Firebase.
+- Implement registration, login, logout, and recovery.
+- Build profile creation.
+- Add route protection.
+- Test authentication and session persistence.
+
+PHASE 3 — SOCIAL FEATURES
+- Implement profiles.
+- Implement follows and requests.
+- Implement video and photo uploads.
+- Implement the feed.
+- Implement likes, comments, sharing, and saved posts.
+- Implement discovery and search.
+
+PHASE 4 — MESSAGING
+- Implement conversations.
+- Implement real-time text messages.
+- Implement media attachments.
+- Implement read states and typing indicators.
+- Implement group chats.
+- Implement notifications.
+
+PHASE 5 — ADVANCED FEATURES
+- Implement Stories.
+- Integrate voice and video calling.
+- Add push notifications.
+- Add privacy controls and moderation.
+
+PHASE 6 — SECURITY AND TESTING
+- Review database rules.
+- Review storage rules.
+- Test authorization.
+- Test error states.
+- Test mobile and desktop layouts.
+- Test uploads and reconnect behavior.
+- Fix build errors and broken interactions.
+- Verify that restricted data cannot be accessed by unauthorized users.
+
+PHASE 7 — FINAL POLISH
+- Improve animations and transitions.
+- Optimize performance.
+- Refine typography and spacing.
+- Add loading skeletons and helpful empty states.
+- Remove unused components and placeholder links.
+- Document setup and deployment.
+
+Do not attempt to build every complex feature in one unverified code dump. Implement in coherent phases and keep the application runnable after each phase.
+
+## 23. TESTING REQUIREMENTS
+
+Test these scenarios:
+
+- A new user can register and sign in.
+- A returning user remains authenticated appropriately.
+- A user can edit their profile.
+- A user can publish a post.
+- Another authorized user can view and like that post.
+- Comments appear correctly and respect permissions.
+- Follow requests respect private-account settings.
+- Two authenticated users can exchange real-time messages.
+- Unrelated users cannot read those messages.
+- Media uploads work and reject unsupported files.
+- Failed operations display useful errors.
+- Notifications open the correct content.
+- Blocked users cannot bypass the intended restrictions.
+- Account deletion follows the documented cleanup process.
+- The app remains usable on narrow mobile screens.
+- No major buttons are decorative or nonfunctional.
+
+Use automated tests where practical, alongside manual end-to-end testing.
+
+## 24. DEFINITION OF DONE
+
+The application is complete only when:
+
+- It launches successfully.
+- Navigation works.
+- Authentication is real.
+- Data persists after refresh or reopening the app.
+- The social feed uses actual stored posts.
+- Users can upload and view supported media.
+- Messaging works between separate accounts in real time.
+- Privacy rules are enforced by the backend.
+- Error, loading, and empty states are implemented.
+- The responsive design works on mobile and desktop.
+- The setup instructions are accurate.
+- Required backend configuration is documented.
+- Major features have been tested.
+
+Clearly distinguish working features from features that still require external credentials, paid infrastructure, device permissions, or deployment.
+
+## 25. FINAL INSTRUCTIONS
+
+Start by examining the existing project and its capabilities.
+
+Then create a short implementation plan, establish the project structure, and begin implementing the actual application.
+
+Do not stop after producing a plan, wireframe, or landing page.
+
+Do not replace backend operations with local arrays or simulated success messages.
+
+Do not claim that Firebase, calling, push notifications, or security features work until they have been configured and tested.
+
+If an external service is required, integrate it as far as possible and give precise setup instructions.
+
+Prioritize a working, secure core application before adding optional advanced features.
+
+The final result should feel like a professional social platform that combines short-form video entertainment, creator discovery, private messaging, group chats, and communication in one cohesive application.
+
+**Build VYRO as a real application, not merely a visual demonstration.**

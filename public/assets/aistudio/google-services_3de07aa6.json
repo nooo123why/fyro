@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "564487532675",
+    "project_id": "vyro-753ab",
+    "storage_bucket": "vyro-753ab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564487532675:android:6ad12857a0ca20967debb6",
+        "android_client_info": {
+          "package_name": "com.vyro.social"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjgO9_QxgynJMAHx580YjnLH4w1gIHKsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

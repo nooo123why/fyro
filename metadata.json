@@ -1,0 +1,6 @@
+{
+  "name": "VYRO",
+  "description": "A social media and messaging app combining short-form video discovery and real-time messaging.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
